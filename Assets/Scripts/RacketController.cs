@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class RacketController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class RacketController : MonoBehaviour
 
     // Deve ser controlado pela AI?
     public bool isAi = false;
+
+    // A bola
+    public Transform ballTransform;
 
     void Start()
     {
@@ -43,15 +47,12 @@ public class RacketController : MonoBehaviour
             if (Input.GetKey(KeyCode.W) && mY < limit)
             {
                 mY += deltaPosition;
-                Debug.Log($"Movendo a raquete do jogador 1 para cima");
             }
 
             // Descendo a raquete do jogador 1
             if (Input.GetKey(KeyCode.S) && mY > -limit)
             {
                 mY -= deltaPosition;
-
-                Debug.Log($"Movendo a raquete do jogador 1 para baixo");
             }
         }
         else
@@ -62,20 +63,18 @@ public class RacketController : MonoBehaviour
                 if (Input.GetKey(KeyCode.UpArrow) && mY < limit)
                 {
                     mY += deltaPosition;
-
-                    Debug.Log($"Movendo a raquete do jogador 2 para cima");
                 }
 
                 // Descendo a raquete do jogador 2
                 if (Input.GetKey(KeyCode.DownArrow) && mY > -limit)
                 {
                     mY -= deltaPosition;
-
-                    Debug.Log($"Movendo a raquete do jogador 2 para baixo");
                 }
+            } else
+            {
+                // Racket controlada por AI usando Interpolação Linear
+                mY = Mathf.Lerp(mY, ballTransform.position.y, 0.02f);
             }
-            
-
         }
 
         // Impedir que o jogador sai da tela por baixo
