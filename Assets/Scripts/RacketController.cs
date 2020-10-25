@@ -70,10 +70,22 @@ public class RacketController : MonoBehaviour
                 {
                     mY -= deltaPosition;
                 }
+
+                // Retirando o jogador 2 da AI
+                if (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return))
+                {
+                    isAi = true;
+                }
             } else
             {
                 // Racket controlada por AI usando Interpolação Linear
-                mY = Mathf.Lerp(mY, ballTransform.position.y, 0.02f);
+                mY = Mathf.Lerp(mY, ballTransform.position.y, 0.03f);
+
+                // Colocando a AI pra jogar
+                if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+                {
+                    isAi = false;
+                }
             }
         }
 
