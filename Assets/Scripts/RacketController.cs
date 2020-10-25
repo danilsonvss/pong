@@ -35,21 +35,21 @@ public class RacketController : MonoBehaviour
         transform.position = mPosition;
 
         // Velocidade com deltatime
-        float velocidadeDelta = velocity * Time.deltaTime;
+        float deltaPosition = velocity * Time.deltaTime;
 
         if (player1)
         {
             // Subindo a raquete do jogador 1
             if (Input.GetKey(KeyCode.W) && mY < limit)
             {
-                mY += velocidadeDelta;
+                mY += deltaPosition;
                 Debug.Log($"Movendo a raquete do jogador 1 para cima");
             }
 
             // Descendo a raquete do jogador 1
             if (Input.GetKey(KeyCode.S) && mY > -limit)
             {
-                mY -= velocidadeDelta;
+                mY -= deltaPosition;
 
                 Debug.Log($"Movendo a raquete do jogador 1 para baixo");
             }
@@ -61,7 +61,7 @@ public class RacketController : MonoBehaviour
                 // Subindo a raquete do jogador 2
                 if (Input.GetKey(KeyCode.UpArrow) && mY < limit)
                 {
-                    mY += velocidadeDelta;
+                    mY += deltaPosition;
 
                     Debug.Log($"Movendo a raquete do jogador 2 para cima");
                 }
@@ -69,7 +69,7 @@ public class RacketController : MonoBehaviour
                 // Descendo a raquete do jogador 2
                 if (Input.GetKey(KeyCode.DownArrow) && mY > -limit)
                 {
-                    mY -= velocidadeDelta;
+                    mY -= deltaPosition;
 
                     Debug.Log($"Movendo a raquete do jogador 2 para baixo");
                 }
